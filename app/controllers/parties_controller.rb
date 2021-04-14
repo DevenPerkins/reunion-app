@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
   def index
-    parties=Party.all
+    parties= Party.all
     render json: parties
   end
 
