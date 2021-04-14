@@ -1,7 +1,7 @@
 class PartiesController < ApplicationController
   def index
     parties=Party.all
-    render json: apartments
+    render json: parties
   end
 
   def create

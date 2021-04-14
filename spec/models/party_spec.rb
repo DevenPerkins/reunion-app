@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Party, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let (:create_params) do
+    {party_name:"Reunion Party", last_name:"bobby", allergies:"none", over_21:true}
+  end
 end

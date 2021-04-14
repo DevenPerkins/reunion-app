@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
     items=Item.all
-    render json: apartments
+    render json: items
   end
 
   def create

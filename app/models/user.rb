@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :parties
   has_many :items
+  validates :first_name,:last_name, :allergies, :over_21, presence: true
 
 end
