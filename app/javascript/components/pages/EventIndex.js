@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { NavLink } from 'react-router-dom'
 
 class EventIndex extends Component {
   render() {
@@ -13,7 +14,9 @@ class EventIndex extends Component {
                 <Card body outline color='secondary'>
                   <CardTitle tag='h5'>{party.party_name}</CardTitle>
                   <CardText>{party.party_start_time}</CardText>
-                  <Button>View Event</Button>
+                  <NavLink to={ `/eventshow/${party.id}`}>
+                    <Button>View Event</Button>
+                  </NavLink>
                 </Card>
               </li>
             );

@@ -33,9 +33,9 @@ class App extends React.Component {
       sign_in_route,
       sign_out_route,
     } = this.props;
-    console.log(this.state.parties);
-    console.log(this.state.items);
-    console.log(current_user);
+    // console.log(this.state.parties);
+    // console.log(this.state.items);
+    // console.log(current_user);
     return (
       <Router>
         <Header
@@ -56,6 +56,12 @@ class App extends React.Component {
                 render={() => <EventIndex parties={this.state.parties} />}
               />
               <Route path='/eventnew' render={() => <EventNew />} />
+              <Route path='/eventshow/:id' render={ (props) => {
+                const id = +props.match.params.id
+                debugger
+                const singleEvent = this.state.parties.find(party => party.id === id)
+                return <EventShow party={ singleEvent } current_user={ current_user }/>}
+              }/>
             </>
           )}
           <Route component={NotFound} />
