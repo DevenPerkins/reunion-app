@@ -18,11 +18,11 @@ import MockParties from './MockParties';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       parties: MockParties,
-      items: MockItems
-    }
+      items: MockItems,
+    };
   }
 
   render() {
@@ -38,16 +38,27 @@ class App extends React.Component {
     console.log(current_user);
     return (
       <Router>
-        <Header logged_in= { logged_in }
-                current_user= { current_user }
-                sign_in_route= { sign_in_route }
-                sign_out_route= { sign_out_route }
-                new_user_route= { new_user_route }
+        <Header
+          logged_in={logged_in}
+          current_user={current_user}
+          sign_in_route={sign_in_route}
+          sign_out_route={sign_out_route}
+          new_user_route={new_user_route}
         />
-        <h1>Hello Reunion!</h1>
         <Switch>
-          {!logged_in && <Route path='/' component={LoggedOutHome} />}
-          {logged_in && <Route exact path='/' component={LoggedInHome} />}
+          <Route path='/aboutus' component={AboutUs} />
+          {!logged_in && <Route exact path='/' component={LoggedOutHome} />}
+          {logged_in && (
+            <>
+              <Route exact path='/' component={LoggedInHome} />
+              <Route
+                path='/eventindex'
+                render={() => <EventIndex parties={this.state.parties} />}
+              />
+              <Route path='/eventnew' render={() => <EventNew />} />
+            </>
+          )}
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </Router>
