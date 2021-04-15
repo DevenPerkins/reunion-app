@@ -56,12 +56,25 @@ class App extends React.Component {
                 render={() => <EventIndex parties={this.state.parties} />}
               />
               <Route path='/eventnew' render={() => <EventNew />} />
-              <Route path='/eventshow/:id' render={ (props) => {
-                const id = +props.match.params.id
-                debugger
-                const singleEvent = this.state.parties.find(party => party.id === id)
-                return <EventShow party={ singleEvent } current_user={ current_user }/>}
-              }/>
+              <Route
+                path='/eventshow/:id'
+                render={(props) => {
+                  const id = +props.match.params.id;
+                  const singleEvent = this.state.parties.find(
+                    (party) => party.id === id
+                  );
+                  const partyItems = this.state.items.filter(
+                    (items) => items.party_id === id
+                  );
+                  return (
+                    <EventShow
+                      party={singleEvent}
+                      items={partyItems}
+                      current_user={current_user}
+                    />
+                  );
+                }}
+              />
             </>
           )}
           <Route component={NotFound} />
