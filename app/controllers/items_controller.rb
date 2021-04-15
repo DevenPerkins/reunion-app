@@ -4,6 +4,11 @@ class ItemsController < ApplicationController
     render json: items
   end
 
+  def show
+    item = Item.find(params[:id])
+    render json: item.as_json(include: :user)
+  end
+
   def create
     item=Item.create(item_params)
     if item.valid?
