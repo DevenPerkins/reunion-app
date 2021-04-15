@@ -3,16 +3,24 @@ class PartiesController < ApplicationController
     parties= Party.all
     render json: parties
   end
-  
-  # show 
-  # use params to get party 
-  # set party in a vaiable and get items 
-  # make new var updated items = party.items.map over items and return item + first name last name (maybe like item.user)
-  # set party.items = updated_items 
-  # render json: party 
 
-  #searchaction 
-  
+  # show
+  def show
+    party = Party.find(params[:id])
+    render json: party.as_json(include: :user)
+  end
+
+  # use params to get party
+  # items = Item.all
+  # mappedItems = party.items.map do |item|
+
+  # set party in a variable and get items
+  # make new var updated items = party.items.map over items and return item + first name last name (maybe like item.user)
+  # set party.items = updated_items
+  # render json: party
+
+  #searchaction
+
 
   def create
     party=Party.create(party_params)
