@@ -6,6 +6,7 @@ const items = [
     party_id: 1,
     user_id: 2,
     first_name: 'Dr',
+    last_name: 'Pepper',
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const items = [
     party_id: 1,
     user_id: 2,
     first_name: 'Dr',
+    last_name: 'Pepper',
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const items = [
     party_id: 2,
     user_id: 3,
     first_name: 'Duck',
+    last_name: 'Goose',
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ const items = [
     party_id: 2,
     user_id: 1,
     first_name: 'Bob',
+    last_name: 'Bobby',
   },
 ];
 
