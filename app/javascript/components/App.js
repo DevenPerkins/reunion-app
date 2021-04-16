@@ -25,6 +25,10 @@ class App extends React.Component {
     };
   }
 
+  createNewEvent = (newEvent) => {
+    console.log(newEvent);
+  }
+
   render() {
     const {
       logged_in,
@@ -55,7 +59,8 @@ class App extends React.Component {
                 path='/eventindex'
                 render={() => <EventIndex parties={this.state.parties} />}
               />
-              <Route path='/eventnew' render={() => <EventNew />} />
+              <Route path='/eventnew' render={() => <EventNew createNewEvent={ this.createNewEvent } current_user= { current_user }/>} />
+              <Route path='/itemnew' render={() => <ItemNew />} />
               <Route
                 path='/eventshow/:id'
                 render={(props) => {
