@@ -13,23 +13,29 @@ import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MockItems from './MockItems';
-import MockParties from './MockParties';
+// import MockItems from './MockItems';
+// import MockParties from './MockParties';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parties: MockParties,
-      items: MockItems,
-      //mock party id
-      party_id: 0,
+      parties: [],
+      items: [],
     };
   }
 
   createNewEvent = (newEvent) => {
-    console.log(newEvent);
-    this.setState({ party_id: (this.state.party_id += 1) });
+    fetch('http://localhost:3000/parties', {
+      method: 'post',
+      body: JSON.stringify({party: newEvent})
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(resonse => {
+      console.log(response);
+    })
   };
 
   createNewItem = (newItem) => {
