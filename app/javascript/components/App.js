@@ -22,12 +22,19 @@ class App extends React.Component {
     this.state = {
       parties: MockParties,
       items: MockItems,
+      //mock party id
+      party_id: 0,
     };
   }
 
   createNewEvent = (newEvent) => {
     console.log(newEvent);
-  }
+    this.setState({ party_id: (this.state.party_id += 1) });
+  };
+
+  createNewItem = (newItem) => {
+    console.log(newItem);
+  };
 
   render() {
     const {
@@ -59,8 +66,25 @@ class App extends React.Component {
                 path='/eventindex'
                 render={() => <EventIndex parties={this.state.parties} />}
               />
-              <Route path='/eventnew' render={() => <EventNew createNewEvent={ this.createNewEvent } current_user= { current_user }/>} />
-              <Route path='/itemnew' render={() => <ItemNew />} />
+              <Route
+                path='/eventnew'
+                render={() => (
+                  <EventNew
+                    createNewEvent={this.createNewEvent}
+                    current_user={current_user}
+                  />
+                )}
+              />
+              <Route
+                path='/itemnew'
+                render={() => (
+                  <ItemNew
+                    items={this.state.items}
+                    createNewItem={this.createNewItem}
+                    party_id={this.state.party_id}
+                  />
+                )}
+              />
               <Route
                 path='/eventshow/:id'
                 render={(props) => {
