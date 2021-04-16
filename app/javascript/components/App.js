@@ -20,22 +20,82 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parties: [],
-      items: [],
+      parties: '',
+      items: '',
     };
   }
+
+  componentDidMount() {
+    this.eventsIndex();
+    this.itemsIndex();
+  }
+
+  eventsIndex = () => {
+    fetch('http://localhost:3000/parties')
+      .then((response) => {
+        return response.json();
+      })
+      .then((partiesArray) => {
+        console.log(partiesArray);
+        this.setState({ parties: partiesArray });
+      })
+      .catch((errors) => {
+        console.log('index errors:', errors);
+      });
+  };
+
+  itemsIndex = () => {
+    fetch('http://localhost:3000/items')
+      .then((response) => {
+        return response.json();
+      })
+      .then((itemsArray) => {
+        console.log(itemsArray);
+        this.setState({ items: itemsArray });
+      })
+      .catch((errors) => {
+        console.log('index errors:', errors);
+      });
+  };
 
   createNewEvent = (newEvent) => {
     fetch('http://localhost:3000/parties', {
       method: 'post',
-      body: JSON.stringify({party: newEvent})
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ party: newEvent }),
     })
-    .then(response => {
-      return response.json()
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .then((payload) => {
+        this.eventsIndex();
+      })
+      .catch((errors) => {
+        console.log('create errors:', errors);
+      });
+  };
+
+  eventShow = (showEvent, id) => {
+    fetch(`http://localhost:3000/parties/${id}`, {
+      body: JSON.stringify(showEvent),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .then(resonse => {
-      console.log(response);
-    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((payload) => {
+        this.eventsIndex();
+      })
+      .catch((errors) => {
+        console.log('show errors:', errors);
+      });
   };
 
   createNewItem = (newItem) => {
