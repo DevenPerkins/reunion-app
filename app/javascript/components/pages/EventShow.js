@@ -23,7 +23,7 @@ class EventShow extends Component {
         <h1>Guests:</h1>
         {filteredItems.map((item) => {
           return (
-            <p>
+            <p key={item.id}>
               user id: {item.first_name} - {item.item_bringing} -{' '}
               {item.allergies}
             </p>

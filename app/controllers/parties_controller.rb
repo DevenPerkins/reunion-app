@@ -7,7 +7,7 @@ class PartiesController < ApplicationController
   # show
   def show
     party = Party.find(params[:id])
-    render json: party.as_json(include: :user)
+    render json: party.as_json(include: [:user, {items: {include: :user}}])
   end
 
   # use params to get party

@@ -13,21 +13,34 @@ import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MockItems from './MockItems';
-import MockParties from './MockParties';
+// import MockItems from './MockItems';
+// import MockParties from './MockParties';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parties: MockParties,
-      items: MockItems,
+      parties: [],
+      items: [],
     };
   }
 
   createNewEvent = (newEvent) => {
-    console.log(newEvent);
-  }
+    fetch('http://localhost:3000/parties', {
+      method: 'post',
+      body: JSON.stringify({party: newEvent})
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(resonse => {
+      console.log(response);
+    })
+  };
+
+  createNewItem = (newItem) => {
+    console.log(newItem);
+  };
 
   render() {
     const {
@@ -59,8 +72,25 @@ class App extends React.Component {
                 path='/eventindex'
                 render={() => <EventIndex parties={this.state.parties} />}
               />
-              <Route path='/eventnew' render={() => <EventNew createNewEvent={ this.createNewEvent } current_user= { current_user }/>} />
-              <Route path='/itemnew' render={() => <ItemNew />} />
+              <Route
+                path='/eventnew'
+                render={() => (
+                  <EventNew
+                    createNewEvent={this.createNewEvent}
+                    current_user={current_user}
+                  />
+                )}
+              />
+              <Route
+                path='/itemnew'
+                render={() => (
+                  <ItemNew
+                    items={this.state.items}
+                    createNewItem={this.createNewItem}
+                    party_id={this.state.party_id}
+                  />
+                )}
+              />
               <Route
                 path='/eventshow/:id'
                 render={(props) => {
