@@ -165,6 +165,7 @@ class App extends React.Component {
                     <EventShow
                       party={singleEvent}
                       items={partyItems}
+                      id={id}
                       current_user={current_user}
                     />
                   );
