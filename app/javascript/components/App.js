@@ -20,26 +20,103 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      party_id: undefined,
       parties: [],
       items: [],
     };
   }
 
+  componentDidMount() {
+    this.eventsIndex();
+    this.itemsIndex();
+  }
+
+  eventsIndex = () => {
+    fetch('http://localhost:3000/parties')
+      .then((response) => {
+        return response.json();
+      })
+      .then((partiesArray) => {
+        this.setState({ parties: partiesArray });
+      })
+      .catch((errors) => {
+        console.error('index errors:', errors);
+      });
+  };
+
+  itemsIndex = () => {
+    fetch('http://localhost:3000/items')
+      .then((response) => {
+        return response.json();
+      })
+      .then((itemsArray) => {
+        this.setState({ items: itemsArray });
+      })
+      .catch((errors) => {
+        console.log('index errors:', errors);
+      });
+  };
+
   createNewEvent = (newEvent) => {
     fetch('http://localhost:3000/parties', {
       method: 'post',
-      body: JSON.stringify({party: newEvent})
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ party: newEvent }),
     })
-    .then(response => {
-      return response.json()
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        this.setState({party_id: response.id})
+      })
+      .then((payload) => {
+        this.eventsIndex();
+      })
+      .catch((errors) => {
+        console.log('create errors:', errors);
+      });
+  };
+
+  eventShow = (showEvent, id) => {
+    fetch(`http://localhost:3000/parties/${id}`, {
+      body: JSON.stringify(showEvent),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .then(resonse => {
-      console.log(response);
-    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((payload) => {
+        this.eventsIndex();
+      })
+      .catch((errors) => {
+        console.log('show errors:', errors);
+      });
   };
 
   createNewItem = (newItem) => {
-    console.log(newItem);
+    fetch('http://localhost:3000/items', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item: newItem }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .then((payload) => {
+        this.itemsIndex();
+      })
+      .catch((errors) => {
+        console.log('create errors:', errors);
+      });
   };
 
   render() {
@@ -53,6 +130,7 @@ class App extends React.Component {
     // console.log(this.state.parties);
     // console.log(this.state.items);
     // console.log(current_user);
+
     return (
       <Router>
         <Header
@@ -105,6 +183,7 @@ class App extends React.Component {
                     <EventShow
                       party={singleEvent}
                       items={partyItems}
+                      id={id}
                       current_user={current_user}
                     />
                   );

@@ -24,6 +24,15 @@ class ItemNew extends Component {
     };
   }
 
+  static getDerivedStateFromProps = (props, state) => {
+    return {
+              form: {
+                  ...state.form,
+                    party_id: props.party_id
+                }
+              }
+  }
+
   handleChange = (e) => {
     let { form } = this.state;
     form[e.target.name] = e.target.value;
