@@ -20,6 +20,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      party_id: '',
       parties: '',
       items: '',
     };
@@ -70,9 +71,11 @@ class App extends React.Component {
         return response.json();
       })
       .then((response) => {
+        this.setState({party_id: response.id})
         console.log(response);
       })
       .then((payload) => {
+        console.log('payload', payload);
         this.eventsIndex();
       })
       .catch((errors) => {
@@ -99,7 +102,25 @@ class App extends React.Component {
   };
 
   createNewItem = (newItem) => {
-    console.log(newItem);
+    fetch('http://localhost:3000/items', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ item: newItem }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .then((payload) => {
+        this.itemsIndex();
+      })
+      .catch((errors) => {
+        console.log('create errors:', errors);
+      });
   };
 
   render() {
@@ -113,6 +134,7 @@ class App extends React.Component {
     // console.log(this.state.parties);
     // console.log(this.state.items);
     // console.log(current_user);
+    console.log('party_id', this.state.party_id);
     return (
       <Router>
         <Header

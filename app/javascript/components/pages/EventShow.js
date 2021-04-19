@@ -43,9 +43,14 @@ componentDidMount(){
       location,
       user_id,
     } = this.props.party;
-    // const filteredItems = this.props.items.filter((item) => {
-    //   return item.user_id != null;
-    // });
+
+    if(this.state.event === false){
+      return null
+    }
+
+    const filteredItems = this.state.event.items.filter((item) => {
+      return item.user_id != null;
+    });
 
     return (
       <>
@@ -57,7 +62,7 @@ componentDidMount(){
         <h1>Guests:</h1>
         <ul>
           {this.state.loading && <li>loading</li>}
-          {!this.state.loading && this.state.event.items.map(item => {
+          {!this.state.loading && filteredItems.map(item => {
               return <li>{item.user.first_name} {item.user.last_name} is bringing {item.item_bringing} which has {item.allergies} as possible allergins</li>
             })
           }
