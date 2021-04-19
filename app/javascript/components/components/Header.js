@@ -16,10 +16,16 @@ import {
   Form,
   Label,
   Input,
+  Button,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
+  const [searchID, setPartyID] = useState();
+  const searchParty = event => {
+    setPartyID(event.target.value);
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -73,9 +79,11 @@ const Header = (props) => {
                   <Input
                   type="search"
                   name="itemConfirmationID"
-
+                  onChange={searchParty}
                   placeholder="Enter Party ID"/>
                   </FormGroup>
+                    <NavLink tag={ Link } to={`/itemconfirmation/${searchID}`}>Go
+                  </NavLink>
                 </Form>
               </>
             }
