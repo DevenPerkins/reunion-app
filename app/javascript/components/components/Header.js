@@ -11,11 +11,21 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
+  FormGroup,
+  Form,
+  Label,
+  Input,
+  Button,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
+  const [searchID, setPartyID] = useState();
+  const searchParty = event => {
+    setPartyID(event.target.value);
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -43,6 +53,9 @@ const Header = (props) => {
                 <NavItem>
                 <NavLink href={ sign_in_route }>Sign In</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/aboutus">About Us</NavLink>
+              </NavItem>
               </>
             }
             {
@@ -57,11 +70,23 @@ const Header = (props) => {
               <NavItem>
                 <NavLink tag={ Link } to="/eventnew">Make Event</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/aboutus">About Us</NavLink>
+              </NavItem>
+              <Form>
+                <FormGroup>
+                  <Label for="itemConfirmationID">Find Party</Label>
+                  <Input
+                  type="search"
+                  name="itemConfirmationID"
+                  onChange={searchParty}
+                  placeholder="Enter Party ID"/>
+                  </FormGroup>
+                    <NavLink tag={ Link } to={`/itemconfirmation/${searchID}`}>Go
+                  </NavLink>
+                </Form>
               </>
             }
-            <NavItem>
-              <NavLink href="/aboutus">About Us</NavLink>
-            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

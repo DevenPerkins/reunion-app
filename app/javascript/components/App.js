@@ -176,19 +176,19 @@ class App extends React.Component {
                   const singleEvent = this.state.parties.find(
                     (party) => party.id === id
                   );
-                  const partyItems = this.state.items.filter(
-                    (items) => items.party_id === id
-                  );
+
                   return (
                     <EventShow
                       party={singleEvent}
-                      items={partyItems}
                       id={id}
                       current_user={current_user}
                     />
                   );
                 }}
               />
+              <Route
+                  path='/itemconfirmation/:id'
+                  render={(props) => <ItemConfirmation/>}/>
             </>
           )}
           <Route component={NotFound} />
