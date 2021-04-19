@@ -5,7 +5,7 @@ class EventShow extends Component {
     super(props)
     this.state = {
       loading: true,
-      event: false,
+      event: undefined,
     }
   }
 //
@@ -21,8 +21,7 @@ componentDidMount(){
         }
       })
       .then((singleEvent) => {
-        this.setState({event: singleEvent});
-        this.setState({loading: false})
+        this.setState({event: singleEvent, loading: false})
       })
       .catch((errors) => {
         console.log('show errors:', errors);
@@ -44,7 +43,7 @@ componentDidMount(){
       user_id,
     } = this.props.party;
 
-    if(this.state.event === false){
+    if(!this.state.event){
       return null
     }
 

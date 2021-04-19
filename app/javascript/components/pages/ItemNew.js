@@ -13,7 +13,6 @@ import {
 class ItemNew extends Component {
   constructor(props) {
     super(props);
-    console.log('prop id', this.props.party_id);
     this.state = {
       form: {
         item_bringing: '',
@@ -26,11 +25,10 @@ class ItemNew extends Component {
   }
 
   static getDerivedStateFromProps = (props, state) => {
-    console.log('props:', props, 'state:', state);
     return {
               form: {
-                ...state.form,
-                  party_id: props.party_id
+                  ...state.form,
+                    party_id: props.party_id
                 }
               }
   }

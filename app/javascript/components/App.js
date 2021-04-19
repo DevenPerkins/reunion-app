@@ -20,9 +20,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      party_id: '',
-      parties: '',
-      items: '',
+      party_id: undefined,
+      parties: [],
+      items: [],
     };
   }
 
@@ -37,11 +37,10 @@ class App extends React.Component {
         return response.json();
       })
       .then((partiesArray) => {
-        console.log(partiesArray);
         this.setState({ parties: partiesArray });
       })
       .catch((errors) => {
-        console.log('index errors:', errors);
+        console.error('index errors:', errors);
       });
   };
 
@@ -51,7 +50,6 @@ class App extends React.Component {
         return response.json();
       })
       .then((itemsArray) => {
-        console.log(itemsArray);
         this.setState({ items: itemsArray });
       })
       .catch((errors) => {
@@ -72,10 +70,8 @@ class App extends React.Component {
       })
       .then((response) => {
         this.setState({party_id: response.id})
-        console.log(response);
       })
       .then((payload) => {
-        console.log('payload', payload);
         this.eventsIndex();
       })
       .catch((errors) => {
@@ -134,7 +130,7 @@ class App extends React.Component {
     // console.log(this.state.parties);
     // console.log(this.state.items);
     // console.log(current_user);
-    console.log('party_id', this.state.party_id);
+
     return (
       <Router>
         <Header
