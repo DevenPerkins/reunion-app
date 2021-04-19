@@ -11,7 +11,11 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
+  FormGroup,
+  Form,
+  Label,
+  Input,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -43,6 +47,9 @@ const Header = (props) => {
                 <NavItem>
                 <NavLink href={ sign_in_route }>Sign In</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/aboutus">About Us</NavLink>
+              </NavItem>
               </>
             }
             {
@@ -57,11 +64,21 @@ const Header = (props) => {
               <NavItem>
                 <NavLink tag={ Link } to="/eventnew">Make Event</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/aboutus">About Us</NavLink>
+              </NavItem>
+              <Form>
+                <FormGroup>
+                  <Label for="itemConfirmationID">Find Party</Label>
+                  <Input
+                  type="search"
+                  name="itemConfirmationID"
+
+                  placeholder="Enter Party ID"/>
+                  </FormGroup>
+                </Form>
               </>
             }
-            <NavItem>
-              <NavLink href="/aboutus">About Us</NavLink>
-            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

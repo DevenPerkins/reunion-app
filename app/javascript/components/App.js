@@ -189,6 +189,9 @@ class App extends React.Component {
                   );
                 }}
               />
+              <Route
+                  path='/Itemconfirmation/:id'
+                  render={() => <ItemConfirmation/>}/>
             </>
           )}
           <Route component={NotFound} />
