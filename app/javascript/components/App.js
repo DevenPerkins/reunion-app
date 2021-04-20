@@ -69,7 +69,7 @@ class App extends React.Component {
         return response.json();
       })
       .then((response) => {
-        this.setState({party_id: response.id})
+        this.setState({ party_id: response.id });
       })
       .then((payload) => {
         this.eventsIndex();
@@ -187,8 +187,9 @@ class App extends React.Component {
                 }}
               />
               <Route
-                  path='/itemconfirmation/:id'
-                  render={(props) => <ItemConfirmation/>}/>
+                path='/itemconfirmation/:id'
+                render={(props) => <ItemConfirmation />}
+              />
             </>
           )}
           <Route component={NotFound} />
