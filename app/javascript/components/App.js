@@ -119,6 +119,29 @@ class App extends React.Component {
       });
   };
 
+  updateItem = (updatedItem, id) => {
+    fetch(`http://localhost:3000/items/${id}`, {
+      body: JSON.stringify(updatedItem),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'PATCH',
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert('Something is wrong with the edit');
+        } else {
+          return response.json();
+        }
+      })
+      .then((payload) => {
+        this.itemsIndex();
+      })
+      .catch((errors) => {
+        console.log('update errors', errors);
+      });
+  };
+
   render() {
     const {
       logged_in,
@@ -188,7 +211,20 @@ class App extends React.Component {
               />
               <Route
                 path='/itemconfirmation/:id'
-                render={(props) => <ItemConfirmation />}
+                render={(props) => {
+                  const id = +props.match.params.id;
+                  const partyItems = this.state.items.filter(
+                    (item) => item.party_id === id
+                  );
+                  return (
+                    <ItemConfirmation
+                      items={partyItems}
+                      party_id={id}
+                      updateItem={this.updateItem}
+                      current_user={current_user}
+                    />
+                  );
+                }}
               />
             </>
           )}
