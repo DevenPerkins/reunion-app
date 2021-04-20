@@ -1,45 +1,45 @@
 import React, { Component } from 'react';
 
 class EventShow extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       loading: true,
       event: undefined,
       loadingDrink: true,
-      drink: [],
-    }
+      drink: {},
+    };
   }
-//
-componentDidMount(){
-  this.eventShow();
-  this.getDrink()
-}
+  //
+  componentDidMount() {
+    this.eventShow();
+    this.getDrink();
+  }
 
   getDrink = () => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-    .then((response) => {
-      if(response.status === 200){
-        return response.json();
-      }
-    })
-    .then((payload)=> {
-      this.setState({drink: payload, loadingDrink: false})
-    })
-    .catch((errors)=> {
-      console.log('show drink errors:', errors);
-    })
-  }
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+      })
+      .then((payload) => {
+        this.setState({ drink: payload.drinks[0], loadingDrink: false });
+      })
+      .catch((errors) => {
+        console.log('show drink errors:', errors);
+      });
+  };
 
   eventShow = (props) => {
     fetch(`http://localhost:3000/parties/${this.props.id}`)
       .then((response) => {
-        if(response.status === 200){
+        if (response.status === 200) {
           return response.json();
         }
       })
       .then((singleEvent) => {
-        this.setState({event: singleEvent, loading: false})
+        this.setState({ event: singleEvent, loading: false });
       })
       .catch((errors) => {
         console.log('show errors:', errors);
@@ -61,8 +61,8 @@ componentDidMount(){
       user_id,
     } = this.props.party;
 
-    if(!this.state.event){
-      return null
+    if (!this.state.event) {
+      return null;
     }
 
     const filteredItems = this.state.event.items.filter((item) => {
@@ -79,13 +79,19 @@ componentDidMount(){
         <h1>Guests:</h1>
         <ul>
           {this.state.loading && <li>loading</li>}
-          {!this.state.loading && filteredItems.map(item => {
-              return <li key={item.id}>{item.user.first_name} {item.user.last_name} is bringing {item.item_bringing} which has {item.allergies} as possible allergins</li>
-            })
-          }
+          {!this.state.loading &&
+            filteredItems.map((item) => {
+              return (
+                <li key={item.id}>
+                  {item.user.first_name} {item.user.last_name} is bringing{' '}
+                  {item.item_bringing} which has {item.allergies} as possible
+                  allergins
+                </li>
+              );
+            })}
         </ul>
         {this.state.loadingDrink && <p>loading</p>}
-        {!this.state.loadingDrink && <p>{this.state.drink.drinks[0].strDrink}</p>}
+        {!this.state.loadingDrink && <p>{this.state.drink.strDrink}</p>}
         <button onClick={this.getDrink}>Get Random Drink</button>
       </>
     );
