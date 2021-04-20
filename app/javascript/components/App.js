@@ -119,6 +119,10 @@ class App extends React.Component {
       });
   };
 
+  updateItem = (updatedItem, id) => {
+    console.log(updatedItem, 'id:', id);
+  };
+
   render() {
     const {
       logged_in,
@@ -188,7 +192,20 @@ class App extends React.Component {
               />
               <Route
                 path='/itemconfirmation/:id'
-                render={(props) => <ItemConfirmation />}
+                render={(props) => {
+                  const id = +props.match.params.id;
+                  const partyItems = this.state.items.filter(
+                    (item) => item.party_id === id
+                  );
+                  return (
+                    <ItemConfirmation
+                      items={partyItems}
+                      party_id={id}
+                      updateItem={this.updateItem}
+                      current_user={current_user}
+                    />
+                  );
+                }}
               />
             </>
           )}
