@@ -33,7 +33,6 @@ class ItemConfirmation extends Component {
     const unclaimedItems = this.props.items.filter((item) => {
       return item.user_id === null;
     });
-    console.log('items', this.props.items);
     return (
       <>
         <Form inline>
@@ -42,29 +41,26 @@ class ItemConfirmation extends Component {
             <Input
               type='select'
               name='item_bringing'
-              value={ this.state.form.id }
-              onChange={ e => {
-                console.log("e",e.target.value)
-                const item_bringing = unclaimedItems.find(item => item.id == e.target.value).item_bringing
-                this.setState({ 
-                  form: { 
+              value={this.state.form.id}
+              onChange={(e) => {
+                const item_bringing = unclaimedItems.find(
+                  (item) => item.id == e.target.value
+                ).item_bringing;
+                this.setState({
+                  form: {
                     ...this.state.form,
-                    id: e.target.value ,
-                    item_bringing
-                  }
-                })
-                // this.handleChange(e) 
+                    id: e.target.value,
+                    item_bringing,
+                  },
+                });
+                // this.handleChange(e)
               }}
             >
               <option>Pick one:</option>
               {unclaimedItems.map((item) => {
                 return (
-                  <option
-                    id={ item.id }
-                    key={ item.id }
-                    value={ item.id }
-                  >
-                    { item.item_bringing }
+                  <option id={item.id} key={item.id} value={item.id}>
+                    {item.item_bringing}
                   </option>
                 );
               })}
@@ -78,14 +74,14 @@ class ItemConfirmation extends Component {
               type='text'
               name='allergies'
               placeholder='Ex. Peanuts'
-              value={ this.state.form.allergies }
-              onChange={ this.handleChange }
+              value={this.state.form.allergies}
+              onChange={this.handleChange}
             />
           </FormGroup>
-          <Button onClick={ this.handleSubmit }>🎉🎉Lets Go Party!🎉🎉</Button>
+          <Button onClick={this.handleSubmit}>🎉🎉Lets Go Party!🎉🎉</Button>
         </Form>
         {this.state.submitted && (
-          <Redirect to={ `/eventshow/${this.props.party_id }`} />
+          <Redirect to={`/eventshow/${this.props.party_id}`} />
         )}
       </>
     );

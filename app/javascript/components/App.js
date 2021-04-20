@@ -120,7 +120,26 @@ class App extends React.Component {
   };
 
   updateItem = (updatedItem, id) => {
-    console.log(updatedItem, 'id:', id);
+    fetch(`http://localhost:3000/items/${id}`, {
+      body: JSON.stringify(updatedItem),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'PATCH',
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert('Something is wrong with the edit');
+        } else {
+          return response.json();
+        }
+      })
+      .then((payload) => {
+        this.itemsIndex();
+      })
+      .catch((errors) => {
+        console.log('update errors', errors);
+      });
   };
 
   render() {
