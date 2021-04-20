@@ -34,3 +34,6 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+#this is coverage testing files
+/app/javascript/coverage
