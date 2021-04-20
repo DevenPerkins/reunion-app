@@ -19,7 +19,6 @@ class ItemConfirmation extends Component {
 
   handleChange = (e) => {
     let { form } = this.state;
-    // console.log('event', e);
     form[e.target.name] = e.target.value;
     this.setState({ form: form });
   };
@@ -53,13 +52,12 @@ class ItemConfirmation extends Component {
                     item_bringing,
                   },
                 });
-                // this.handleChange(e)
               }}
             >
               <option>Pick one:</option>
               {unclaimedItems.map((item) => {
                 return (
-                  <option id={item.id} key={item.id} value={item.id}>
+                  <option key={item.id} value={item.id}>
                     {item.item_bringing}
                   </option>
                 );
