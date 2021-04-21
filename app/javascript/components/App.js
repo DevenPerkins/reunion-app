@@ -34,9 +34,11 @@ class App extends React.Component {
   eventsIndex = () => {
     fetch('http://localhost:3000/parties')
       .then((response) => {
+        console.log('eventIndex response', response);
         return response.json();
       })
       .then((partiesArray) => {
+        console.log(partiesArray);
         this.setState({ parties: partiesArray });
       })
       .catch((errors) => {

@@ -2,15 +2,28 @@ import App from './App';
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Home from './pages/Home';
+import LoggedInHome from './pages/LoggedInHome';
+import LoggedOutHome from './pages/LoggedOutHome';
 
 Enzyme.configure({ adapter: new Adapter()})
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(),
+  })
+);
 
 describe('When App renders', () => {
   let renderedApp;
   beforeEach(() => {
     // arrange
-    renderedApp = shallow(<App />);
+    fetch.mockImplementationOnce(() => Promise.resolve({
+    json: () => Promise.resolve([{ party_name:'banana', party_start_time:'never', location:'here', description:'something' }]),
+  }))
+  fetch.mockImplementationOnce(() => Promise.resolve({
+  json: () => Promise.resolve([{ item_bringing:'something', allergies:'none', party_id:1, user_id:1 }]),
+}))
+    renderedApp = shallow(<App logged_in={false} />);
   });
 
   it('displays Header and Footer', () => {
@@ -33,6 +46,6 @@ describe('When App renders', () => {
     // assert
     expect(renderedHomeRoute.length).toEqual(1);
     // console.log(renderedHomeRoute.props());
-    expect(renderedHomeRoute.props().component).toEqual(Home);
+    expect(renderedHomeRoute.props().component).toEqual(LoggedOutHome);
   });
 })
