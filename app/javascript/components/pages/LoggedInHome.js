@@ -14,8 +14,7 @@ class LoggedInHome extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchID: 0,
-      setPartyID: 0,
+      setPartyID: null,
     }
   }
 
@@ -26,7 +25,7 @@ class LoggedInHome extends Component {
   render() {
     return (
       <>
-        <h1>Welcome !</h1>
+        <h1>Welcome {this.props.current_user.first_name}!</h1>
         <h3>Find an Event!</h3>
         <Form>
           <FormGroup>
