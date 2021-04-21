@@ -73,7 +73,7 @@ const Header = (props) => {
               <NavItem>
                 <NavLink href="/aboutus">About Us</NavLink>
               </NavItem>
-              <Form>
+              <Form className="searchbar">
                 <FormGroup>
                   <Label for="itemConfirmationID">Find Party</Label>
                   <Input

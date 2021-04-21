@@ -1,1 +1,52 @@
 @import 'bootstrap';
+
+body {
+  background-color: #00c0d8;
+}
+.searchbar{
+  text-align: right;
+}
+
+.footertext{
+  text-align: center;
+}
+.cardbody{
+  text-align: center;
+}
+hr { display: block; margin-before: 0.5em; margin-after: 0.5em; margin-start: auto; margin-end: auto; overflow: hidden; border-style: inset; border-width: 1px;}
+
+
+
+.jumbotron {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("./partyhomepageimage.jpg");
+    /* Set a specific height */
+    height: 50%;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+.jumbo-container {
+    text-align: center;
+    padding: 70px 0;
+    color: white;
+    .display-3{
+        font-weight: bold;
+        font-family: "Montserrat",sans-serif;
+        font-size: 3.125rem;
+        line-height: 3.125rem;
+        margin-bottom: .5rem;
+        letter-spacing: -1.1px;
+    }
+    .lead{
+        font-weight: normal;
+        font-family: "Montserrat",sans-serif;
+        font-size: 1.375rem;
+        line-height: 1.75rem;
+        margin-bottom: 1.75rem;
+        letter-spacing: 0;
+    }
+}
