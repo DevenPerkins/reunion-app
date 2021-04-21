@@ -152,7 +152,7 @@ class App extends React.Component {
     } = this.props;
     // console.log(this.state.parties);
     // console.log(this.state.items);
-    // console.log(current_user);
+    // console.log('app.js',current_user);
 
     return (
       <Router>
@@ -168,7 +168,7 @@ class App extends React.Component {
           {!logged_in && <Route exact path='/' component={LoggedOutHome} />}
           {logged_in && (
             <>
-              <Route exact path='/' component={LoggedInHome} />
+              <Route exact path='/' render={() => <LoggedInHome current_user={current_user}/>}  />
               <Route
                 path='/eventindex'
                 render={() => <EventIndex parties={this.state.parties} />}
