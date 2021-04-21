@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Container, Row, Col, Card, CardTitle, CardText} from 'reactstrap';
+import Testimonial from '../components/testimonial';
+import './LoggedOutHome.scss';
 
 
 
@@ -60,7 +62,10 @@ class LoggedOutHome extends Component {
     </Row>
    </div>
    <hr/>
-   
+   <div className="testimonial">
+   <h1>Testimonials</h1>
+    <Testimonial  />
+  </div>
       </>
     );
   }
