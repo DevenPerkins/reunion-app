@@ -54,6 +54,7 @@ class EventShow extends Component {
 
   render() {
     const {
+      id,
       party_name,
       party_start_time,
       description,
@@ -73,6 +74,9 @@ class EventShow extends Component {
       <>
         <h1>My Events</h1>
         <p>Party Name: {party_name} </p>
+        <p>
+          Party ID <small>(for your friends)</small>: {id}
+        </p>
         <p>When: {party_start_time}</p>
         <p>Where: {location}</p>
         <p>{description}</p>
@@ -90,8 +94,14 @@ class EventShow extends Component {
               );
             })}
         </ul>
+        <h1>Drinks!</h1>
         {this.state.loadingDrink && <p>loading</p>}
-        {!this.state.loadingDrink && <p>{this.state.drink.strDrink}</p>}
+        {!this.state.loadingDrink && (
+          <>
+            <h3>{this.state.drink.strDrink}</h3>
+            <img src={this.state.drink.strDrinkThumb} alt='picture of drink' />
+          </>
+        )}
         <button onClick={this.getDrink}>Get Random Drink</button>
       </>
     );
