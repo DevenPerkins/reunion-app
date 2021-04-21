@@ -8,6 +8,8 @@ class EventShow extends Component {
       event: undefined,
       loadingDrink: true,
       drink: {},
+      ingredients:[],
+      measurements:[],
     };
   }
   //
@@ -24,6 +26,7 @@ class EventShow extends Component {
         }
       })
       .then((payload) => {
+        this.getIngredientsMeasurements(payload.drinks[0])
         this.setState({ drink: payload.drinks[0], loadingDrink: false });
       })
       .catch((errors) => {
@@ -46,6 +49,18 @@ class EventShow extends Component {
       });
   };
 
+  getIngredientsMeasurements = (object) => {
+    let ingredients = [];
+    let measurements = [];
+    for(const [key,value] of Object.entries(object)){
+      if(key.startsWith('strIngredient') && value !== null && value !== ''){
+        ingredients.push(value)
+      }else if(key.startsWith('strMeasure') && value !== null && value !== ''){
+        measurements.push(value)
+    };
+   this.setState({ingredients, measurements});
+ };
+};
   // listItems = () => {
   //   this.state.event.items.map(item => {
   //     return <li>{item.item_bringing}</li>
@@ -100,6 +115,28 @@ class EventShow extends Component {
           <>
             <h3>{this.state.drink.strDrink}</h3>
             <img src={this.state.drink.strDrinkThumb} alt='picture of drink' />
+            <div style={{display:'inline'}}>
+              <ul>
+                {this.state.ingredients.map((ingredient, index) => {
+                  return (
+                    <li key={index}>
+                    {ingredient}
+                    </li>
+                  )
+                })}
+              </ul>
+              <ul>
+                {this.state.measurements.map((measurement, index) => {
+                  return (
+                    <li key={index}>
+                    {measurement}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+            <h3>Instructions:</h3>
+            <p>{this.state.drink.strInstructions}</p>
           </>
         )}
         <button onClick={this.getDrink}>Get Random Drink</button>
