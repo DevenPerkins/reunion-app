@@ -170,7 +170,11 @@ class App extends React.Component {
           {!logged_in && <Route exact path='/' component={LoggedOutHome} />}
           {logged_in && (
             <>
-              <Route exact path='/' render={() => <LoggedInHome current_user={current_user}/>}  />
+              <Route
+                exact
+                path='/'
+                render={() => <LoggedInHome current_user={current_user} />}
+              />
               <Route
                 path='/eventindex'
                 render={() => <EventIndex parties={this.state.parties} />}
