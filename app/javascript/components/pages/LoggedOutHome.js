@@ -68,7 +68,7 @@ class LoggedOutHome extends Component {
    <div className="testimonial">
     <Testimonial  />
   </div>
-  <hr />
+  
       </>
     );
   }
