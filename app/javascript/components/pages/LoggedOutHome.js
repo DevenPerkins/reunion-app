@@ -17,7 +17,7 @@ class LoggedOutHome extends Component {
         </Container>
       </Jumbotron>
       </div>
-      <div>
+      <div className= "card1">
       <Row>
      <Col sm="6">
        <Card body>
@@ -32,7 +32,7 @@ class LoggedOutHome extends Component {
    </Row>
       </div>
       <br />
-      <div>
+      <div className= "card1">
       <Row>
      <Col sm="6">
        <Card body>
@@ -47,7 +47,7 @@ class LoggedOutHome extends Component {
    </Row>
    </div>
    <br/>
-  <div>
+  <div className= "card1">
    <Row>
     <Col sm="6">
       <Card body>
@@ -61,11 +61,14 @@ class LoggedOutHome extends Component {
     </Col>
     </Row>
    </div>
-   <hr/>
+   <hr />
+   <div className="testimonial-text">
+     <h1>Testimonials</h1>
+   </div>
    <div className="testimonial">
-   <h1>Testimonials</h1>
     <Testimonial  />
   </div>
+  <hr />
       </>
     );
   }
