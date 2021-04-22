@@ -23,8 +23,8 @@ class ItemConfirmation extends Component {
     this.setState({ form: form });
   };
 
-  handleSubmit = () => {
-    this.props.updateItem(this.state.form, this.state.form.id);
+  handleSubmit = async () => {
+    await this.props.updateItem(this.state.form, this.state.form.id);
     this.setState({ submitted: true });
   };
 
