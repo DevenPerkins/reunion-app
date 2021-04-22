@@ -8,6 +8,8 @@ import {
   Input,
   ListGroup,
   ListGroupItem,
+  Row,
+  Col,
 } from 'reactstrap';
 
 class ItemNew extends Component {
@@ -57,48 +59,51 @@ class ItemNew extends Component {
     }
     return (
       <>
-        <h1>Add needed item</h1>
-        <Form inline>
-          <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-            <Label for='item_bringing' className='mr-sm-2'>
-              Item needed:
-            </Label>
-            <Input
-              type='text'
-              name='item_bringing'
-              placeholder='ex. Hamburger Buns'
-              value={form.item_bringing}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-            <Label for='allergies' className='mr-sm-2'>
-              Allergens?
-            </Label>
-            <Input
-              type='text'
-              name='allergies'
-              placeholder='ex. Gluten'
-              value={form.allergies}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <Button onClick={this.handleSubmit}>Add item</Button>
-        </Form>
-        <ListGroup>
-          {filteredItems ? (
-            filteredItems.map((item) => {
-              return (
-                <ListGroupItem key={item.id}>
-                  {item.item_bringing}
-                </ListGroupItem>
-              );
-            })
-          ) : (
-            <ListGroupItem>Please Add Items</ListGroupItem>
-          )}
-        </ListGroup>
-        <NavLink to={`/eventshow/${party_id}`}>Continue to event page</NavLink>
+      <Row className>
+        <Col sm="12" md={{ size: 7, offset: 3 }}><h3>Add needed items for event</h3>
+          <Form inline>
+            <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
+              <Label for='item_bringing' className='mr-sm-2'>
+                Item needed:
+              </Label>
+              <Input
+                type='text'
+                name='item_bringing'
+                placeholder='ex. Hamburger Buns'
+                value={form.item_bringing}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
+              <Label for='allergies' className='mr-sm-2'>
+                Allergens?
+              </Label>
+              <Input
+                type='text'
+                name='allergies'
+                placeholder='ex. Gluten'
+                value={form.allergies}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <Button onClick={this.handleSubmit}>Add item</Button>
+          </Form>
+          <ListGroup>
+            {filteredItems ? (
+              filteredItems.map((item) => {
+                return (
+                  <ListGroupItem key={item.id}>
+                    {item.item_bringing}
+                  </ListGroupItem>
+                );
+              })
+            ) : (
+              <ListGroupItem>Please Add Items</ListGroupItem>
+            )}
+          </ListGroup>
+          <NavLink to={`/eventshow/${party_id}`}>Continue to event page</NavLink>
+          </Col>
+      </Row>
       </>
     );
   }
