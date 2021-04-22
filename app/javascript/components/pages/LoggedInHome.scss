@@ -1,0 +1,20 @@
+.section{
+  float: right;
+}
+hr { display: block; margin-before: 0.5em; margin-after: 0.5em; margin-start: auto; margin-end: auto; overflow: hidden; border-style: inset; border-width: 1px;}
+
+.row-margin{
+  margin: 10px 5px;
+}
+
+.h1-styles{
+  font-style: "Montserrat", sans-serif;
+  color: white;
+  font-size: 5em;
+  text-shadow: 4px 4px 4px #49525A;
+  font-weight: bold;
+  font-family: "Montserrat",sans-serif;
+  line-height: 3.125rem;
+  letter-spacing: -1.1px;
+  padding: 50px;
+}
