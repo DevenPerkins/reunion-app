@@ -122,7 +122,7 @@ class App extends React.Component {
   };
 
   updateItem = (updatedItem, id) => {
-    fetch(`http://localhost:3000/items/${id}`, {
+    return fetch(`http://localhost:3000/items/${id}`, {
       body: JSON.stringify(updatedItem),
       headers: {
         'Content-Type': 'application/json',
@@ -234,7 +234,7 @@ class App extends React.Component {
               />
             </>
           )}
-          <Route component={NotFound} />
+          <Route path='*' component={NotFound} />
         </Switch>
         <Footer />
       </Router>
