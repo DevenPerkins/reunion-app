@@ -5,7 +5,7 @@ class Footer extends Component {
     return (
       <>
       <hr/>
-        <h4 className="footertext"> © by Deven & Angelo & Elyse & Kevinn</h4>
+        <h4 className="footertext"> © Reunion</h4>
       </>
     );
   }
