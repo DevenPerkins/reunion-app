@@ -84,3 +84,4 @@ production:
   database: reunion_app_production
   username: reunion_app
   password: <%= ENV['REUNION_APP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
