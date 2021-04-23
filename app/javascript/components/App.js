@@ -12,7 +12,7 @@ import LoggedOutHome from './pages/LoggedOutHome';
 import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 // import MockItems from './MockItems';
 // import MockParties from './MockParties';
 
@@ -155,6 +155,7 @@ class App extends React.Component {
     // console.log(this.state.parties);
     // console.log(this.state.items);
     // console.log('app.js',current_user);
+    // console.log(this.props.match.params);
 
     return (
       <Router>
@@ -167,7 +168,11 @@ class App extends React.Component {
         />
         <Switch>
           <Route path='/aboutus' component={AboutUs} />
-          {!logged_in && <Route exact path='/' component={LoggedOutHome} />}
+          {!logged_in && (
+            <>
+            <Route exact path='/' component={LoggedOutHome} />
+          </>
+        )}
           {logged_in && (
             <>
               <Route
@@ -234,7 +239,8 @@ class App extends React.Component {
               />
             </>
           )}
-          <Route path='*' component={NotFound} />
+          <Route path='/notfound' component={NotFound} />
+          <Redirect to='/notfound'/>
         </Switch>
         <Footer />
       </Router>

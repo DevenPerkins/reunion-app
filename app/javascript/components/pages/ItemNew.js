@@ -43,7 +43,7 @@ class ItemNew extends Component {
 
   handleSubmit = () => {
     this.props.createNewItem(this.state.form);
-    this.setState({ submitted: true });
+    this.setState({ submitted: true, form: { item_bringing: '' }});
   };
 
   render() {
@@ -59,9 +59,9 @@ class ItemNew extends Component {
     }
     return (
       <>
-      <Row className>
-        <Col sm="12" md={{ size: 7, offset: 3 }}><h3>Add needed items for event</h3>
-          <Form inline>
+      <h1 className='h1-styles item-h1'>Add needed items for event</h1>
+        <Col className='col-align' sm="12" md={{ size: 7, offset: 3 }}>
+          <Form>
             <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
               <Label for='item_bringing' className='mr-sm-2'>
                 Item needed:
@@ -74,19 +74,8 @@ class ItemNew extends Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-              <Label for='allergies' className='mr-sm-2'>
-                Allergens?
-              </Label>
-              <Input
-                type='text'
-                name='allergies'
-                placeholder='ex. Gluten'
-                value={form.allergies}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <Button onClick={this.handleSubmit}>Add item</Button>
+            
+            <Button className='button-styles' onClick={this.handleSubmit}>Add item</Button>
           </Form>
           <ListGroup>
             {filteredItems ? (
@@ -101,9 +90,12 @@ class ItemNew extends Component {
               <ListGroupItem>Please Add Items</ListGroupItem>
             )}
           </ListGroup>
-          <NavLink to={`/eventshow/${party_id}`}>Continue to event page</NavLink>
           </Col>
-      </Row>
+          <NavLink to={`/eventshow/${party_id}`}>
+          <Button className='button-styles'>Continue to event page
+          </Button>
+          </NavLink>
+
       </>
     );
   }

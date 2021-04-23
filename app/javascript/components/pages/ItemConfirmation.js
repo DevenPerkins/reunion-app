@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container, Col } from 'reactstrap';
+import './ItemConfirmation.scss'
 
 class ItemConfirmation extends Component {
   constructor(props) {
@@ -34,9 +35,12 @@ class ItemConfirmation extends Component {
     });
     return (
       <>
-        <Form inline>
+      <Container>
+        <Form>
+        <h1 className='h1-styles item-h1'>Select Item To RSVP</h1>
+        <Col className='col-align' sm='12' md={{ size: 6, offset: 3 }}>
           <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-            <Label for='exampleSelect'>Select</Label>
+            <Label for='exampleSelect'>Select:</Label>
             <Input
               type='select'
               name='item_bringing'
@@ -64,9 +68,10 @@ class ItemConfirmation extends Component {
               })}
             </Input>
           </FormGroup>
+          <br />
           <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
             <Label for='allergies' className='mr-sm-2'>
-              Possible Allergens
+              Possible Allergens:
             </Label>
             <Input
               type='text'
@@ -76,8 +81,10 @@ class ItemConfirmation extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button onClick={this.handleSubmit}>🎉🎉Lets Go Party!🎉🎉</Button>
+          </Col>
+          <Button className='button-styles' onClick={this.handleSubmit}>🎉🎉Lets Go Party!🎉🎉</Button>
         </Form>
+        </Container>
         {this.state.submitted && (
           <Redirect to={`/eventshow/${this.props.party_id}`} />
         )}
