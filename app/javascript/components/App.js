@@ -12,7 +12,12 @@ import LoggedOutHome from './pages/LoggedOutHome';
 import NotFound from './pages/NotFound';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 // import MockItems from './MockItems';
 // import MockParties from './MockParties';
 
@@ -166,82 +171,84 @@ class App extends React.Component {
           sign_out_route={sign_out_route}
           new_user_route={new_user_route}
         />
-        <Switch>
-          <Route path='/aboutus' component={AboutUs} />
-          {!logged_in && (
-            <>
+
+        {!logged_in && (
+          <Switch>
             <Route exact path='/' component={LoggedOutHome} />
-          </>
+            <Route path='/aboutus' component={AboutUs} />
+            <Route component={NotFound} />
+          </Switch>
         )}
-          {logged_in && (
-            <>
-              <Route
-                exact
-                path='/'
-                render={() => <LoggedInHome current_user={current_user} />}
-              />
-              <Route
-                path='/eventindex'
-                render={() => <EventIndex parties={this.state.parties} />}
-              />
-              <Route
-                path='/eventnew'
-                render={() => (
-                  <EventNew
-                    createNewEvent={this.createNewEvent}
+        {logged_in && (
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={() => <LoggedInHome current_user={current_user} />}
+            />
+            <Route path='/aboutus' component={AboutUs} />
+            <Route
+              path='/eventindex'
+              render={() => <EventIndex parties={this.state.parties} />}
+            />
+            <Route
+              path='/eventnew'
+              render={() => (
+                <EventNew
+                  createNewEvent={this.createNewEvent}
+                  current_user={current_user}
+                />
+              )}
+            />
+            <Route
+              path='/itemnew'
+              render={() => (
+                <ItemNew
+                  items={this.state.items}
+                  createNewItem={this.createNewItem}
+                  party_id={this.state.party_id}
+                />
+              )}
+            />
+            <Route
+              path='/eventshow/:id'
+              render={(props) => {
+                const id = +props.match.params.id;
+                const singleEvent = this.state.parties.find(
+                  (party) => party.id === id
+                );
+
+                return (
+                  <EventShow
+                    party={singleEvent}
+                    id={id}
                     current_user={current_user}
                   />
-                )}
-              />
-              <Route
-                path='/itemnew'
-                render={() => (
-                  <ItemNew
-                    items={this.state.items}
-                    createNewItem={this.createNewItem}
-                    party_id={this.state.party_id}
+                );
+              }}
+            />
+            <Route
+              path='/itemconfirmation/:id'
+              render={(props) => {
+                const id = +props.match.params.id;
+                const partyItems = this.state.items.filter(
+                  (item) => item.party_id === id
+                );
+                return (
+                  <ItemConfirmation
+                    items={partyItems}
+                    party_id={id}
+                    updateItem={this.updateItem}
+                    current_user={current_user}
                   />
-                )}
-              />
-              <Route
-                path='/eventshow/:id'
-                render={(props) => {
-                  const id = +props.match.params.id;
-                  const singleEvent = this.state.parties.find(
-                    (party) => party.id === id
-                  );
+                );
+              }}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        )}
 
-                  return (
-                    <EventShow
-                      party={singleEvent}
-                      id={id}
-                      current_user={current_user}
-                    />
-                  );
-                }}
-              />
-              <Route
-                path='/itemconfirmation/:id'
-                render={(props) => {
-                  const id = +props.match.params.id;
-                  const partyItems = this.state.items.filter(
-                    (item) => item.party_id === id
-                  );
-                  return (
-                    <ItemConfirmation
-                      items={partyItems}
-                      party_id={id}
-                      updateItem={this.updateItem}
-                      current_user={current_user}
-                    />
-                  );
-                }}
-              />
-            </>
-          )}
-          <Route path='/notfound' component={NotFound} />
-          <Redirect to='/notfound'/>
-        </Switch>
+        {/* <Redirect to='/notfound'/> */}
         <Footer />
       </Router>
     );
