@@ -1,4 +1,19 @@
 import React, { Component } from 'react';
+import './EventShow.scss';
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+} from 'reactstrap';
 
 class EventShow extends Component {
   constructor(props) {
@@ -90,51 +105,84 @@ class EventShow extends Component {
     });
     return (
       <>
-        <h1>My Events</h1>
-        <p>Party Name: {party_name} </p>
-        <p>
-          Party ID <small>(for your friends)</small>: {id}
-        </p>
-        <p>When: {party_start_time}</p>
-        <p>Where: {location}</p>
-        <p>{description}</p>
-        <h1>Guests:</h1>
-        <ul>
-          {this.state.loading && <li>loading</li>}
-          {!this.state.loading &&
-            filteredItems.map((item) => {
-              return (
-                <li key={item.id}>
-                  {item.user.first_name} {item.user.last_name} is bringing{' '}
-                  {item.item_bringing} which has {item.allergies} as possible
-                  allergins
-                </li>
-              );
-            })}
-        </ul>
-        <h1>Drinks!</h1>
-        {this.state.loadingDrink && <p>loading</p>}
-        {!this.state.loadingDrink && (
-          <>
-            <h3>{this.state.drink.strDrink}</h3>
-            <img src={this.state.drink.strDrinkThumb} alt='picture of drink' />
-            <div style={{ display: 'inline' }}>
-              <ul>
-                {this.state.ingredients.map((ingredient, index) => {
-                  return <li key={index}>{ingredient}</li>;
-                })}
-              </ul>
-              <ul>
-                {this.state.measurements.map((measurement, index) => {
-                  return <li key={index}>{measurement}</li>;
-                })}
-              </ul>
-            </div>
-            <h3>Instructions:</h3>
-            <p>{this.state.drink.strInstructions}</p>
-          </>
-        )}
-        <button onClick={this.getDrink}>Get Random Drink</button>
+        <Container>
+          <Row>
+            <Col>
+              <h1 className='h1-styles'>{party_name}</h1>
+              <p>
+                Party ID <small>(for your friends)</small>: {id}
+              </p>
+              <p>
+                When: {party_start_time} | Where: {location}
+              </p>
+              <p>{description}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <h3 className='h3-styles'>Guests:</h3>
+              <ListGroup className='list-style'>
+                {this.state.loading && <li>loading</li>}
+                {!this.state.loading &&
+                  filteredItems.map((item) => {
+                    return (
+                      <ListGroupItem key={item.id}>
+                        {item.user.first_name} {item.user.last_name} is bringing{' '}
+                        {item.item_bringing}{' '}
+                        {item.allergies
+                          ? `which has ${item.allergies} as
+                        possible allergins`
+                          : null}
+                      </ListGroupItem>
+                    );
+                  })}
+              </ListGroup>
+            </Col>
+            <Col md={6}>
+              <Card className='card-box-shadow'>
+                {this.state.loadingDrink && <p>loading</p>}
+                {!this.state.loadingDrink && (
+                  <>
+                    <CardImg
+                      top
+                      width='100%'
+                      src={this.state.drink.strDrinkThumb}
+                      alt='Cocktail image'
+                    />
+                    <CardBody className='cardbody-styles'>
+                      <CardTitle tag='h5'>
+                        {this.state.drink.strDrink}
+                      </CardTitle>
+                      <CardSubtitle>
+                        {this.state.drink.strInstructions}
+                      </CardSubtitle>
+                      <Row>
+                        <Col md={6}>
+                          <ul>
+                            {this.state.ingredients.map((ingredient, index) => {
+                              return <li key={index}>{ingredient}</li>;
+                            })}
+                          </ul>
+                        </Col>
+                        <Col md={6}>
+                          <ul>
+                            {this.state.measurements.map(
+                              (measurement, index) => {
+                                return <li key={index}>{measurement}</li>;
+                              }
+                            )}
+                          </ul>
+                        </Col>
+                      </Row>
+
+                      <Button onClick={this.getDrink}>Get Random Drink</Button>
+                    </CardBody>
+                  </>
+                )}
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </>
     );
   }
