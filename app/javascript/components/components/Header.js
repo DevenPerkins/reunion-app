@@ -40,10 +40,9 @@ const Header = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Reunion</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className={["w-100", "align-items-center", !logged_in ? "mr-auto" : ""]} navbar>
             {
               !logged_in &&
               <>
@@ -55,6 +54,9 @@ const Header = (props) => {
               </NavItem>
               <NavItem>
                 <NavLink href="/aboutus">About Us</NavLink>
+              </NavItem>
+              <NavItem className='mr-auto'>
+              <NavbarBrand href="/">Reunion</NavbarBrand>
               </NavItem>
               </>
             }
@@ -73,9 +75,13 @@ const Header = (props) => {
               <NavItem>
                 <NavLink href="/aboutus">About Us</NavLink>
               </NavItem>
-              <Form className="searchbar">
+              <NavItem className='m-auto'>
+              <NavbarBrand href="/">Reunion</NavbarBrand>
+              </NavItem>
+              <NavItem>
+              <Form inline className="searchbar ml-auto d-flex">
                 <FormGroup>
-                  <Label for="itemConfirmationID">Find Party</Label>
+                  <Label for="itemConfirmationID">Find Party:  </Label>
                   <Input
                   type="search"
                   name="itemConfirmationID"
@@ -85,6 +91,7 @@ const Header = (props) => {
                     <NavLink tag={ Link } to={`/itemconfirmation/${searchID}`}>Go
                   </NavLink>
                 </Form>
+                </NavItem>
               </>
             }
           </Nav>
