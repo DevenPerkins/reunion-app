@@ -32,6 +32,24 @@ class EventIndex extends Component {
               );
             })}
           </ul>
+          <h1 className='h1-styles'>Attending Events</h1>
+          <ul className='index-ul'>
+            {this.props.itemsParty.map((party, id) => {
+              return (
+                <li key={id} className='card-margin'>
+                  <Card body outline color='secondary'>
+                    <CardTitle tag='h5'>
+                      {party.party.party_name} - Party ID: {party.party.id}
+                    </CardTitle>
+                    <CardText>{party.party_start_time}</CardText>
+                    <NavLink to={`/eventshow/${party.party.id}`}>
+                      <Button>View Event</Button>
+                    </NavLink>
+                  </Card>
+                </li>
+              );
+            })}
+          </ul>
         </Parallax>
       </>
     );
