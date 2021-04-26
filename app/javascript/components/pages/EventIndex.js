@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import './EventIndex.scss';
 import { Parallax } from 'react-parallax';
 
 class EventIndex extends Component {
