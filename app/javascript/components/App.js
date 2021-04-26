@@ -189,7 +189,20 @@ class App extends React.Component {
             <Route path='/aboutus' component={AboutUs} />
             <Route
               path='/eventindex'
-              render={() => <EventIndex parties={this.state.parties} />}
+              render={() => {
+                const myParties = this.state.parties.filter(
+                  (party) => party.user_id === current_user.id
+                );
+                const myPartiesThruItems = this.state.items.filter(
+                  (item) => item.user_id === current_user.id
+                );
+                return (
+                  <EventIndex
+                    parties={myParties}
+                    itemsParty={myPartiesThruItems}
+                  />
+                );
+              }}
             />
             <Route
               path='/eventnew'

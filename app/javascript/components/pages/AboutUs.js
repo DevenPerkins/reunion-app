@@ -42,7 +42,23 @@ class AboutUs extends Component {
                     day to day operations. He is able to take the knowledge he
                     learned from there and apply it to developing.
                   </CardText>
-                  <Button>Button</Button>
+                  <Button
+                    className='btn-style'
+                    href='https://linkedin.com/in/angelosdimarco'
+                    target='blank'
+                  >
+                    LinkedIn
+                  </Button>
+                  <Button
+                    className='btn-style'
+                    href='https://github.com/angelod5811'
+                    target='blank'
+                  >
+                    GithHub
+                  </Button>
+                  <Button href='https://www.angeloddimarco.com/' target='blank'>
+                    Portfolio
+                  </Button>
                 </CardBody>
               </Card>
             </Col>
@@ -72,7 +88,23 @@ class AboutUs extends Component {
                     schedule for the team (take your breaks!) and keeping track
                     of the items that needed to be done to reach MVP.
                   </CardText>
-                  <Button>Button</Button>
+                  <Button
+                    className='btn-style'
+                    href='https://www.linkedin.com/in/deven-perkins-50356b51/'
+                    target='blank'
+                  >
+                    LinkedIn
+                  </Button>
+                  <Button
+                    className='btn-style'
+                    href='https://github.com/DevenPerkins'
+                    target='blank'
+                  >
+                    GithHub
+                  </Button>
+                  <Button href='http://devenperkins.com' target='blank'>
+                    Portfolio
+                  </Button>
                 </CardBody>
               </Card>
             </Col>
@@ -102,7 +134,23 @@ class AboutUs extends Component {
                     also lead the mentorship sessions while having a strong
                     understanding of the technical needs of the project.
                   </CardText>
-                  <Button>Button</Button>
+                  <Button
+                    className='btn-style'
+                    href='https://www.linkedin.com/in/kevinnarbas'
+                    target='blank'
+                  >
+                    LinkedIn
+                  </Button>
+                  <Button
+                    className='btn-style'
+                    href='https://github.com/kevinnarbas'
+                    target='blank'
+                  >
+                    GithHub
+                  </Button>
+                  <Button href='http://kevinnarbas.com' target='blank'>
+                    Portfolio
+                  </Button>
                 </CardBody>
               </Card>
             </Col>
@@ -131,7 +179,26 @@ class AboutUs extends Component {
                     user wants out of our product and how best to implement
                     these features.
                   </CardText>
-                  <Button>Button</Button>
+                  <Button
+                    className='btn-style'
+                    href='https://www.linkedin.com/in/elysemontano/'
+                    target='blank'
+                  >
+                    LinkedIn
+                  </Button>
+                  <Button
+                    className='btn-style'
+                    href='https://github.com/elysemontano'
+                    target='blank'
+                  >
+                    GithHub
+                  </Button>
+                  <Button
+                    href='https://elysemontano.bss.design/'
+                    target='blank'
+                  >
+                    Portfolio
+                  </Button>
                 </CardBody>
               </Card>
             </Col>
