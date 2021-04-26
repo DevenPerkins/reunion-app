@@ -17,7 +17,7 @@ With the time constraints put on us with this project we attempted to test as ou
 
     #### **Current Render**
 
-    ![Imgur](https://imgur.com/CO5G2HD)
+    ![Imgur](https://i.imgur.com/CO5G2HD.gifv)
 
 - Event Dashboard
     #### **Wire Frame**
@@ -26,7 +26,7 @@ With the time constraints put on us with this project we attempted to test as ou
 
     #### **Current Render**
 
-    ![Imgur](https://imgur.com/bm2fcAa)
+    ![Imgur](https://i.imgur.com/bm2fcAa.gifv)
 
 
 ### **Installation**
