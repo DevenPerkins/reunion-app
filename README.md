@@ -11,22 +11,22 @@ With the time constraints put on us with this project we attempted to test as ou
 
 ### **Visuals**
 - Logged Out Home
-    #### **~Wire Frame~**
+    #### **Wire Frame**
 
     ![Imgur](https://i.imgur.com/qf75cH8m.png)
 
-    #### **~Current Render~**
+    #### **Current Render**
 
-    ![Imgur](https://i.imgur.com/CO5G2HD.gif)
+    ![Imgur](https://imgur.com/CO5G2HD)
 
 - Event Dashboard
-    #### **~Wire Frame~**
+    #### **Wire Frame**
 
     ![Imgur](https://i.imgur.com/2RVaCpam.png)
 
-    #### **~Current Render~**
+    #### **Current Render**
 
-    ![Imgur](https://i.imgur.com/bm2fcAa.gif)
+    ![Imgur](https://imgur.com/bm2fcAa)
 
 
 ### **Installation**
