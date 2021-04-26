@@ -9,7 +9,6 @@ import {
   CardText,
 } from 'reactstrap';
 import Testimonial from '../components/testimonial';
-import './LoggedOutHome.scss';
 
 class LoggedOutHome extends Component {
   render() {

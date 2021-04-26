@@ -11,7 +11,6 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import './AboutUs.scss';
 
 class AboutUs extends Component {
   render() {

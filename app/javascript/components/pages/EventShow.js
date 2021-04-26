@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventShow.scss';
 import {
   Container,
   Row,

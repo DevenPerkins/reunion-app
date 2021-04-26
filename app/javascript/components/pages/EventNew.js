@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
-import './EventNew.scss';
 
 class EventNew extends Component {
   constructor(props) {

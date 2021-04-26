@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container, Col } from 'reactstrap';
-import './ItemConfirmation.scss'
 
 class ItemConfirmation extends Component {
   constructor(props) {
