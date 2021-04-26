@@ -49,7 +49,7 @@ class EventShow extends Component {
   };
 
   eventShow = (props) => {
-    fetch(`http://localhost:3000/parties/${this.props.id}`)
+    fetch(`/parties/${this.props.id}`)
       .then((response) => {
         if (response.status === 200) {
           return response.json();

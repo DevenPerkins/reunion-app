@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   eventsIndex = () => {
-    fetch('http://localhost:3000/parties')
+    fetch('/parties')
       .then((response) => {
         console.log('eventIndex response', response);
         return response.json();
@@ -52,7 +52,7 @@ class App extends React.Component {
   };
 
   itemsIndex = () => {
-    fetch('http://localhost:3000/items')
+    fetch('/items')
       .then((response) => {
         return response.json();
       })
@@ -65,7 +65,7 @@ class App extends React.Component {
   };
 
   createNewEvent = (newEvent) => {
-    fetch('http://localhost:3000/parties', {
+    fetch('/parties', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ class App extends React.Component {
   };
 
   eventShow = (showEvent, id) => {
-    fetch(`http://localhost:3000/parties/${id}`, {
+    fetch(`/parties/${id}`, {
       body: JSON.stringify(showEvent),
       headers: {
         'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ class App extends React.Component {
   };
 
   createNewItem = (newItem) => {
-    fetch('http://localhost:3000/items', {
+    fetch('/items', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ class App extends React.Component {
   };
 
   updateItem = (updatedItem, id) => {
-    return fetch(`http://localhost:3000/items/${id}`, {
+    return fetch(`/items/${id}`, {
       body: JSON.stringify(updatedItem),
       headers: {
         'Content-Type': 'application/json',
