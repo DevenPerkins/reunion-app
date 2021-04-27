@@ -13,7 +13,7 @@ With the time constraints put on us with this project we attempted to test as ou
 - Logged Out Home
     #### **Wire Frame**
 
-    ![Imgur](https://i.imgur.com/qf75cH8m.png)
+    ![Imgur](https://i.imgur.com/qf75cH8.png)
 
     #### **Current Render**
 
@@ -22,7 +22,7 @@ With the time constraints put on us with this project we attempted to test as ou
 - Event Dashboard
     #### **Wire Frame**
 
-    ![Imgur](https://i.imgur.com/2RVaCpam.png)
+    ![Imgur](https://i.imgur.com/2RVaCpa.png)
 
     #### **Current Render**
 
