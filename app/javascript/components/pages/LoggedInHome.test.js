@@ -7,10 +7,11 @@ Enzyme.configure({ adapter: new Adapter()})
 
 describe('When LoggedInHome renders', () => {
     it('displays LoggedInHome heading', () => {
-      const loggedInHome = shallow(<LoggedInHome />);
-  
+      const current_user = { first_name: 'Bob' };
+      const loggedInHome = shallow(<LoggedInHome current_user={current_user} />);
+
       const editHeading = loggedInHome.find('h1');
-  
-      expect(editHeading.text()).toEqual('Logged In home');
+
+      expect(editHeading.text()).toEqual(`Welcome Bob!`);
     });
   });
