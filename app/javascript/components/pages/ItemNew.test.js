@@ -12,9 +12,9 @@ describe('When ItemNew renders', () => {
       const itemNew = shallow(<ItemNew createNewItem={()=>{}}
         items={items}
         party_id={{id:1}}  />);
-  
+
       const editHeading = itemNew.find('h1');
-  
-      expect(editHeading.text()).toEqual('Add needed item');
+
+      expect(editHeading.text()).toEqual('Add needed items for event');
     });
   });

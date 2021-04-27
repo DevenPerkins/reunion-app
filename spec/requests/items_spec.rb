@@ -76,8 +76,8 @@ RSpec.describe "Items", type: :request do
           error_response = JSON.parse(response.body)
           expect(error_response['allergies']).to include "can't be blank"
           expect(response).to have_http_status(422)
-        end   
-    
+        end
+
         it 'cannot create a new item without a party_id' do
           user1 = User.create! email:'stu@pid.com',  password:"2222222", first_name:"bob",last_name:"bobby",over_21: true,allergies: "none"
           party1 = Party.create! party_name: 'Reunion Party', party_start_time: "7pm", location: '77 goodale dr San Diego, CA', description: 'this is a cant spell', user_id: user1.id
@@ -93,10 +93,10 @@ RSpec.describe "Items", type: :request do
           expect(error_response['party_id']).to include "can't be blank"
           expect(response).to have_http_status(422)
         end
-         
+
         it 'cannot create a new item without user_id' do
           user1 = User.create! email:'stu@pid.com',  password:"2222222", first_name:"bob",last_name:"bobby",over_21: true,allergies: "none"
-          party1 = Party.create! party_name: 'Reunion Party', party_start_time: "7pm", location: '77 goodale dr San Diego, CA', 
+          party1 = Party.create! party_name: 'Reunion Party', party_start_time: "7pm", location: '77 goodale dr San Diego, CA',
           description: 'this is a cant spell', user_id: user1.id
           Item.create!(item_bringing:'cups',allergies:'none',party_id: party1.id ,user_id: user1.id)
           item_params = {
@@ -111,7 +111,7 @@ RSpec.describe "Items", type: :request do
           expect(error_response['user_id']).to include "can't be blank"
           expect(response).to have_http_status(422)
         end
-      end  
+      end
 
     describe 'PUT /items' do
       it 'edits a item' do
@@ -121,7 +121,7 @@ RSpec.describe "Items", type: :request do
         party1 = Party.create!(party_name: 'Reunion Party', party_start_time: "7pm", location: '77 goodale dr San Diego, CA', description: 'this is a cant spell', user_id: user1.id)
 
         item = Item.create!(item_bringing:'cups',allergies:'none',party_id: party1.id ,user_id: user1.id)
-        
+
         # arrange - the request params are trying to edit that item_id
         update_item_params = {
           item: {
