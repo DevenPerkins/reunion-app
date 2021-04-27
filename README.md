@@ -26,7 +26,7 @@ With the time constraints put on us with this project we attempted to test as ou
 
     #### **Current Render**
 
-    ![Imgur](https://i.imgur.com/6xEDGmJ.gif)
+    ![Imgur](https://i.imgur.com/5qK7eCV.gif)
 
 
 ### **Installation**
